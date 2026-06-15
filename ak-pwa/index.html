@@ -6,49 +6,7 @@
     <meta name="theme-color" content="#10171c" />
     <title>Anna Karenina — Reading Companion</title>
     <style>
-      html, body { 
-        margin: 0; 
-        padding: 0;
-        width: 100%;
-        min-height: 100%; 
-        background: #10171c; 
-        overflow-x: hidden; 
-      }
-      
-      *, *::before, *::after {
-        box-sizing: border-box;
-      }
-
-      svg, img, canvas {
-        max-width: 100%;
-        height: auto;
-      }
-
-      #root * {
-        max-width: 100vw;
-      }
-
-      p, span, blockquote, li, div {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-      }
-
-      /* --- NEW: RESPONSIVE STACKING FOR MOBILE --- */
-      @media (max-width: 850px) {
-        /* Targets the main layout wrappers and forces them to stack */
-        #root > div, 
-        #root > div > div {
-          display: flex !important;
-          flex-direction: column-reverse !important; 
-          width: 100% !important;
-        }
-
-        /* Ensures the panels don't inherit weird desktop margins when stacked */
-        #root > div > div > div {
-          width: 100% !important;
-          max-width: 100% !important;
-        }
-      }
+      html, body, #root { margin: 0; height: 100%; background: #10171c; }
     </style>
   </head>
   <body>
