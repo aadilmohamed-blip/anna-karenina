@@ -6,37 +6,35 @@
     <meta name="theme-color" content="#10171c" />
     <title>Anna Karenina — Reading Companion</title>
     <style>
-      html, body, #root { 
+      html, body { 
         margin: 0; 
         padding: 0;
         width: 100%;
         min-height: 100%; 
         background: #10171c; 
+        overflow-x: hidden; /* Absolute stop for horizontal panning */
       }
       
-      /* Ensure padding doesn't accidentally add to element width calculations */
-      * {
+      /* Ensure padding doesn't mathematically add to an element's width */
+      *, *::before, *::after {
         box-sizing: border-box;
       }
 
-      /* Force all text blocks to wrap sentences onto new lines naturally */
-      p, span, blockquote, h1, h2, h3, footer, li {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal !important;
+      /* Force the timeline and character map to dynamically shrink */
+      svg, img, canvas {
+        max-width: 100%;
+        height: auto;
       }
 
-      /* Mobile Layout Override */
-      @media (max-width: 680px) {
-        #root div, #root main, #root section {
-          width: 100% !important;
-          max-width: 100% !important;
-          min-width: 0 !important;
-          margin-left: 0 !important;
-          margin-right: 0 !important;
-          padding-left: 16px !important;
-          padding-right: 16px !important;
-        }
+      /* Prevent any hardcoded desktop containers from pushing past the screen */
+      #root * {
+        max-width: 100vw;
+      }
+
+      /* Ensure long Russian names don't force text to clip off-screen */
+      p, span, blockquote, li, div {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
       }
     </style>
   </head>
