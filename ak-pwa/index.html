@@ -12,29 +12,42 @@
         width: 100%;
         min-height: 100%; 
         background: #10171c; 
-        overflow-x: hidden; /* Absolute stop for horizontal panning */
+        overflow-x: hidden; 
       }
       
-      /* Ensure padding doesn't mathematically add to an element's width */
       *, *::before, *::after {
         box-sizing: border-box;
       }
 
-      /* Force the timeline and character map to dynamically shrink */
       svg, img, canvas {
         max-width: 100%;
         height: auto;
       }
 
-      /* Prevent any hardcoded desktop containers from pushing past the screen */
       #root * {
         max-width: 100vw;
       }
 
-      /* Ensure long Russian names don't force text to clip off-screen */
       p, span, blockquote, li, div {
         overflow-wrap: break-word;
         word-wrap: break-word;
+      }
+
+      /* --- NEW: RESPONSIVE STACKING FOR MOBILE --- */
+      @media (max-width: 850px) {
+        /* Targets the main layout wrappers and forces them to stack */
+        #root > div, 
+        #root > div > div {
+          display: flex !important;
+          flex-direction: column-reverse !important; 
+          width: 100% !important;
+        }
+
+        /* Ensures the panels don't inherit weird desktop margins when stacked */
+        #root > div > div > div {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
       }
     </style>
   </head>
