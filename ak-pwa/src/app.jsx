@@ -538,7 +538,7 @@ export default function App() {
   const tabs=[["web","Relationship web"],["timeline","Timeline"],["places","Places"],["motifs","Motifs"],["decoder","Name decoder"],["excerpts","Excerpts"],["glossary","Glossary"]];
 
   return (
-    <div style={{minHeight:"100vh",background:C.night,color:C.ink,fontFamily:"system-ui,-apple-system,'Segoe UI',Roboto,sans-serif"}}>
+    <div style={{minHeight:"100vh",background:C.night,color:C.ink,fontFamily:"system-ui,-apple-system,'Segoe UI',Roboto,sans-serif",width:"100%",maxWidth:"100%",overflowX:"hidden"}}>
       <style>{`input:focus{outline:2px solid ${C.brass};outline-offset:1px;}
         button:focus-visible{outline:2px solid ${C.brass};outline-offset:2px;}
         @media (prefers-reduced-motion:reduce){*{transition:none!important;}}`}</style>
