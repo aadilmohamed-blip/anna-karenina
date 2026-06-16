@@ -319,8 +319,8 @@ function Web({ marker, onPick, focus }) {
   const present = new Set(chars.map(c => c.id));
   const rels = reveals(marker).rels.filter(r => present.has(r.a) && present.has(r.b));
   return (
-    <div style={{overflowY:"auto",WebkitOverflowScrolling:"touch"}}>
-      <svg viewBox="0 0 620 750" style={{width:"100%",height:"auto",display:"block"}}>
+    <div style={{overflowY:"auto",WebkitOverflowScrolling:"touch",overflowX:"hidden",width:"100%",maxWidth:"100%"}}>
+      <svg viewBox="0 0 620 750" preserveAspectRatio="xMidYMid meet" style={{width:"100%",height:"auto",display:"block",maxWidth:"100%"}}>
         {rels.map((r,i) => {
           const [x1,y1]=POS[r.a],[x2,y2]=POS[r.b], s=EDGE[r.kind];
           const lit = focus && (r.a===focus||r.b===focus);
@@ -397,7 +397,7 @@ function Detail({ id, marker, onClose, onPick }) {
   const seen=latest(c.lastSeen||[],marker);
   const loc=c.home && LOCATIONS[c.home];
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.greenLt}`,borderRadius:12,padding:20,boxSizing:"border-box",width:"100%",maxWidth:"100%"}}>
+    <div style={{background:C.panel,border:`1px solid ${C.greenLt}`,borderRadius:12,padding:20,boxSizing:"border-box",width:"100%",minWidth:"0"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"start"}}>
         <div>
           <div style={{display:"flex",alignItems:"center",gap:8}}>
@@ -539,9 +539,15 @@ export default function App() {
 
   return (
     <div style={{minHeight:"100vh",background:C.night,color:C.ink,fontFamily:"system-ui,-apple-system,'Segoe UI',Roboto,sans-serif",width:"100%",maxWidth:"100%",overflowX:"hidden"}}>
-      <style>{`input:focus{outline:2px solid ${C.brass};outline-offset:1px;}
-        button:focus-visible{outline:2px solid ${C.brass};outline-offset:2px;}
-        @media (prefers-reduced-motion:reduce){*{transition:none!important;}}`}</style>
+      <style>{`
+        input:focus { outline: 2px solid ${C.brass}; outline-offset: 1px; }
+        button:focus-visible { outline: 2px solid ${C.brass}; outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+        @media (max-width: 768px) {
+          main { max-width: 100% !important; padding: 16px !important; }
+          main > div { flex-direction: column !important; }
+        }
+      `}</style>
 
       <header style={{borderBottom:`1px solid ${C.green}`,background:C.panel}}>
         <div style={{maxWidth:1180,margin:"0 auto",padding:"18px 22px"}}>
@@ -571,9 +577,9 @@ export default function App() {
         ))}
       </nav>
 
-      <main style={{maxWidth:1180,margin:"0 auto",padding:"22px",overflow:"hidden"}}>
+      <main style={{maxWidth:"100%",width:"100%",margin:"0 auto",padding:"16px",overflow:"hidden",boxSizing:"border-box"}}>
         {tab==="web" && (
-          <div style={{display:"flex",flexDirection:"column",gap:22}}>
+          <div style={{display:"flex",flexDirection:"column",gap:22,width:"100%",maxWidth:"100%"}}>
             <div style={{background:C.panel,border:`1px solid ${C.green}`,borderRadius:12,padding:10}}>
               <div style={{display:"flex",gap:16,flexWrap:"wrap",padding:"6px 10px 12px",fontSize:12,color:C.mute}}>
                 {Object.entries({marriage:"marriage",affair:"affair",courtship:"courtship",sibling:"siblings",friend:"friends"}).map(([k,l])=>{
