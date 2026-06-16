@@ -580,6 +580,7 @@ export default function App() {
       <main style={{maxWidth:"100%",width:"100%",margin:"0 auto",padding:"16px",overflow:"hidden",boxSizing:"border-box"}}>
         {tab==="web" && (
           <div style={{display:"flex",flexDirection:"column",gap:22,width:"100%",maxWidth:"100%"}}>
+            {picked && <Detail id={picked} marker={marker} onClose={()=>setPicked(null)} onPick={setPicked}/>}
             <div style={{background:C.panel,border:`1px solid ${C.green}`,borderRadius:12,padding:10}}>
               <div style={{display:"flex",gap:16,flexWrap:"wrap",padding:"6px 10px 12px",fontSize:12,color:C.mute}}>
                 {Object.entries({marriage:"marriage",affair:"affair",courtship:"courtship",sibling:"siblings",friend:"friends"}).map(([k,l])=>{
@@ -589,7 +590,6 @@ export default function App() {
               </div>
               <Web marker={marker} focus={picked} onPick={setPicked}/>
             </div>
-            {picked && <Detail id={picked} marker={marker} onClose={()=>setPicked(null)} onPick={setPicked}/>}
           </div>
         )}
         {tab==="timeline" && <Timeline marker={marker} onPick={(id)=>{setPicked(id);setTab("web");}}/>}
