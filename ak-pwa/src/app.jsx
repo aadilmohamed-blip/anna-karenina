@@ -397,7 +397,7 @@ function Detail({ id, marker, onClose, onPick }) {
   const seen=latest(c.lastSeen||[],marker);
   const loc=c.home && LOCATIONS[c.home];
   return (
-    <div style={{background:C.panel,border:`1px solid ${C.greenLt}`,borderRadius:12,padding:20}}>
+    <div style={{background:C.panel,border:`1px solid ${C.greenLt}`,borderRadius:12,padding:20,boxSizing:"border-box",width:"100%",maxWidth:"100%"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"start"}}>
         <div>
           <div style={{display:"flex",alignItems:"center",gap:8}}>
@@ -571,7 +571,7 @@ export default function App() {
         ))}
       </nav>
 
-      <main style={{maxWidth:1180,margin:"0 auto",padding:22}}>
+      <main style={{maxWidth:1180,margin:"0 auto",padding:"22px",overflow:"hidden"}}>
         {tab==="web" && (
           <div style={{display:"flex",flexDirection:"column",gap:22}}>
             <div style={{background:C.panel,border:`1px solid ${C.green}`,borderRadius:12,padding:10}}>
